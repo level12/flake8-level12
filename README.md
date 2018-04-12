@@ -1,6 +1,6 @@
 # flake8-level12 #
 
-[![CircleCI](https://circleci.com/gh/level12/flake8-level12.svg?style=svg)](https://circleci.com/gh/level12/flake8-level12)
+[![CircleCI](https://circleci.com/gh/level12/flake8-level12.svg?style=svg&circle-token=0603b577ca2816d66fffa0379e4bf15ab05a2310)](https://circleci.com/gh/level12/flake8-level12)
 [![codecov](https://codecov.io/gh/level12/flake8-level12/branch/master/graph/badge.svg?token=dPEpA2ns8p)](https://codecov.io/gh/level12/flake8-level12)
 
 Set of flake8 plugins for Level 12 internal use. As with other flake8 plugins, when this module is
