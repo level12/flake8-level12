@@ -36,10 +36,20 @@ setup(
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
         'Intended Audience :: Developers',
+        'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Software Development :: Quality Assurance',
     ],
+    license='BSD',
+    extras_require={
+        'test': [
+            'flake8',
+            'pytest',
+            'pytest-cov',
+            'tox',
+        ],
+    }
 )

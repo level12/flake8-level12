@@ -7,7 +7,9 @@ Set of flake8 plugins designed for Level 12 internal use.
 
 ## Usage ##
 
-`pip install git+https://github.com/level12/flake8-level12.git`
+This package is not currently published on PyPI, so the more direct git ref is needed:
+
+    pip install git+https://github.com/level12/flake8-level12.git
 
 As with other flake8 plugins, when this module is installed in a virtual environment, the plugins
 will be enabled and can be selected/ignored the same way other codes are.
@@ -25,8 +27,18 @@ will be enabled and can be selected/ignored the same way other codes are.
 
 ## Development ##
 
-Each plugin in this package should have tests: `pytest` is used as the test runner. To run `tox`,
-install `pytest` and `pytest-cov`.
+To develop on flake8-level12, begin by running our tests:
+
+    git clone https://github.com/level12/flake8-level12 flake8-level12
+    cd flake8-level12
+    tox
+
+As an alternative to using `tox`, you may run `pytest` from within your own virtual environment:
+
+    pip install -e .[test]
+    pytest
+
+Each plugin in this package should have tests: `pytest` is used as the test runner.
 
 ### Checklist for new plugins ###
 
