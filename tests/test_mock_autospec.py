@@ -24,6 +24,12 @@ def bar(m_foo):
     pass
 '''
 
+ok_object_decorator = '''
+@mock.patch.object(foo, 'bar', autospec=True, spec_set=True)
+def test_bar(self, m_bar):
+    pass
+'''
+
 ok_context_manager = '''
 def foo():
     with mock.patch('bar', autospec=True, spec_set=True) as bar:
@@ -80,6 +86,12 @@ def bar(m_foo):
     pass
 '''
 
+fail_object_decorator_missing_autospec = '''
+@mock.patch.object(foo, 'bar', spec_set=True)
+def test_bar(m_bar):
+    pass
+'''
+
 
 class TestMockAutospecChecker:
     @pytest.mark.parametrize(
@@ -90,6 +102,7 @@ class TestMockAutospecChecker:
             ok_decorator_passes_value,
             ok_context_manager,
             ok_direct_import,
+            ok_object_decorator,
         ]
     )
     def test_ok(self, code):
@@ -107,6 +120,7 @@ class TestMockAutospecChecker:
             (fail_class_decorator_missing_spec_set, 2, 'M102'),
             (fail_decorator_wrong_spec_set, 2, 'M103'),
             (fail_context_manager_missing_autospec, 3, 'M100'),
+            (fail_object_decorator_missing_autospec, 2, 'M100'),
         ]
     )
     def test_single_fails(self, code, line, error):

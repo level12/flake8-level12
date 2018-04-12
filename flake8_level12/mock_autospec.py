@@ -27,15 +27,23 @@ class MockAutospecChecker(object):
 
     def run(self):
         def check_node(node):
+            max_args = 1
+
             # make sure the decorator is a patch call
             if not isinstance(node, ast.Call):
                 return
             if isinstance(node.func, ast.Name) and node.func.id != 'patch':
                 return
             elif isinstance(node.func, (ast.Attribute, ast.Call)) and node.func.attr != 'patch':
-                return
-            # if we have more than one arg, we're directly assigning a mock value
-            if len(node.args) > 1:
+                has_patch = False
+                for child in ast.iter_child_nodes(node.func):
+                    if getattr(child, 'id', getattr(child, 'attr', None)) == 'patch':
+                        max_args = 2
+                        has_patch = True
+                if not (node.func.attr == 'object' and has_patch):
+                    return
+            # if we have more than max_args, we're directly assigning a mock value
+            if len(node.args) > max_args:
                 return
 
             node_kwargs = {keyword.arg: keyword.value for keyword in node.keywords}
