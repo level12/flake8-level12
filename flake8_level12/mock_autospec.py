@@ -39,7 +39,7 @@ class MockAutospecChecker(object):
                 if getattr(child, 'id', getattr(child, 'attr', None)) == 'patch':
                     max_args = 2
                     has_patch = True
-            if not (node.func.attr == 'object' and has_patch):
+            if not (node.func.attr in ('object', 'multiple') and has_patch):
                 return
         # if we have more than max_args, we're directly assigning a mock value
         if len(node.args) > max_args:

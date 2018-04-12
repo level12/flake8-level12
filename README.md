@@ -18,7 +18,7 @@ will be enabled and can be selected/ignored the same way other codes are.
 
 - _mock_autospec_
   - The following patching usages are covered:
-    - `mock.patch` and `mock.patch.object`
+    - `mock.patch`, `mock.patch.object`, and `mock.patch.multiple`
     - usage as class/method decorator, or as a context manager
   - __M100__: autospec keyword arg missing
   - __M101__: autospec keyword should be True
