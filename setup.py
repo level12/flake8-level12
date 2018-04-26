@@ -26,6 +26,7 @@ setup(
     author_email='matt.lewellyn@level12.io',
     url='https://github.com/level12/flake8-level12',
     py_modules=['flake8_level12'],
+    packages=['flake8_level12'],
     zip_safe=False,
     entry_points={
         'flake8.extension': [
