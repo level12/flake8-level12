@@ -14,6 +14,8 @@ This package is not currently published on PyPI, so the more direct git ref is n
 As with other flake8 plugins, when this module is installed in a virtual environment, the plugins
 will be enabled and can be selected/ignored the same way other codes are.
 
+__Note__: if you have your project set up to check flake8 in tox, be sure to include this package in that test environment's `deps`.
+
 ## Plugins ##
 
 - _mock_autospec_
