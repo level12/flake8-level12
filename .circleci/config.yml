@@ -10,7 +10,7 @@ jobs:
             - run:
                 name: install tox
                 command: >
-                    sudo python3.6 -m pip install --upgrade --force-reinstall --quiet
+                    python3.6 -m pip install --upgrade --force-reinstall --quiet
                     tox
             - run:
                 name: version checks
