@@ -48,18 +48,23 @@ class MockAutospecChecker(object):
         node_kwargs = {keyword.arg: keyword.value for keyword in node.keywords}
 
         # make sure the expected kwargs are in place
-        def check_kwarg(kwarg, ignore_with_spec=False):
-            if ignore_with_spec and 'spec' in node_kwargs:
-                # if spec is provided, autospec/spec_set should not be required
-                return
-            elif kwarg not in node_kwargs:
+        def check_kwarg(kwarg):
+            if kwarg not in node_kwargs:
                 self.add_error('{}_missing'.format(kwarg), node.lineno)
             elif not (
-                isinstance(node_kwargs[kwarg], ast.NameConstant) and
-                node_kwargs[kwarg].value is True
+                isinstance(node_kwargs[kwarg], ast.NameConstant)
+                and node_kwargs[kwarg].value is True
             ):
                 self.add_error('{}_wrong'.format(kwarg), node.lineno)
-        check_kwarg('autospec', ignore_with_spec=True)
+
+        def check_autospec_kwarg(kwarg):
+            ignore_with_kwargs = 'spec', 'new_callable'
+            if set(ignore_with_kwargs).intersection(set(node_kwargs.keys())):
+                # if spec is provided, autospec should not be required
+                return
+            return check_kwarg(kwarg)
+
+        check_autospec_kwarg('autospec')
         check_kwarg('spec_set')
 
     def run(self):

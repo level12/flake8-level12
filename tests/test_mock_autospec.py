@@ -54,6 +54,12 @@ def test_foo(self, m_foo):
     pass
 '''
 
+ok_decorator_passes_with_new_callable = '''
+@mock.patch('foo', new_callable=PropertyMock, spec_set=True)
+def test_foo(self, m_foo):
+    pass
+'''
+
 fail_decorator_missing_autospec = '''
 @mock.patch('foo', spec_set=True)
 def bar(m_foo):
@@ -129,6 +135,7 @@ class TestMockAutospecChecker:
             ok_object_decorator,
             ok_multiple_decorator,
             ok_decorator_passes_with_spec,
+            ok_decorator_passes_with_new_callable,
         ]
     )
     def test_ok(self, code):
