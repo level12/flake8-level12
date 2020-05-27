@@ -31,6 +31,7 @@ setup(
     entry_points={
         'flake8.extension': [
             'M10 = flake8_level12.mock_autospec:MockAutospecChecker',
+            'M11 = flake8_level12.numeric_column_prec:NumericPrecisionScaleChecker',
         ],
     },
     classifiers=[
